@@ -1,0 +1,6 @@
+{
+    "command": "sleep 1 && cat",
+    "taskVerbose": false,
+    "replacePattern": "/Users/exampleuser/projects/js/task-run/",
+    "replaceValue": ""
+}

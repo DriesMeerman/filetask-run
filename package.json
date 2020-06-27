@@ -1,0 +1,29 @@
+{
+  "name": "filetask-run",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc -p ./",
+    "start": "npm run build && node ./dist/index.js"
+  },
+  "main": "./dist/main.js",
+  "bin": {
+    "filetask": "./dist/main.js"
+  },
+  "author": "Dries Meerman",
+  "license": "MIT",
+  "dependencies": {
+    "cli-progress": "^3.8.2",
+    "commander": "^5.1.0",
+    "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.7.0",
+    "@types/commander": "^2.12.2",
+    "@types/glob": "^7.1.2",
+    "@types/node": "^14.0.14",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
