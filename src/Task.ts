@@ -57,7 +57,10 @@ export class Task {
         const filePath = file;//path.resolve(file).normalize();
         const command = config.getCommand();
         const replacer = config.getReplacer();
-        const argPath = replacer ? replacer(filePath) : filePath;
+        let argPath = replacer ? replacer(filePath) : filePath;
+        
+        if (config.isSpaceEscapingEnabled())    
+            argPath = argPath.replace(/\ /g, '\\ ');
 
         return new Task(`${command} ${argPath}`, config.isTaskOutPutVerbose());
     }

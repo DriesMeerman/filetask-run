@@ -40,6 +40,9 @@ var Config = /** @class */ (function () {
             return null;
         return new RegExp(value, 'g');
     };
+    Config.prototype.isSpaceEscapingEnabled = function () {
+        return this.config.escapeSpace !== false;
+    };
     Config.prototype.isTaskOutPutVerbose = function () {
         return this.config.taskVerbose === true;
     };

@@ -31,6 +31,10 @@ export class Config {
         return new RegExp(<string>value, 'g');
     }
 
+    isSpaceEscapingEnabled(): boolean{
+        return this.config.escapeSpace !== false;
+    }
+
     isTaskOutPutVerbose(): boolean {
         return this.config.taskVerbose === true;
     }

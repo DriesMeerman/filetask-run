@@ -3,12 +3,11 @@ import { Logger } from "./utilities/Logger";
 import { Config } from "./utilities/Config";
 import { GlobHelper } from "./utilities/GlobHelper";
 import { Dispatcher } from "./Dispatcher";
-import { Task } from "./Task";
 
 const logger = new Logger();
 
 const cli: program.Command = program.program
-    .version("1.0.0")
+    .version("1.0.1")
     .usage("[options]")
     .option("-c, --config <path>", "Path to config file, will try taskConfig.json in both current and parent directory as default")
 

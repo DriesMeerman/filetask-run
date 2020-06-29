@@ -46,6 +46,8 @@ var Task = /** @class */ (function () {
         var command = config.getCommand();
         var replacer = config.getReplacer();
         var argPath = replacer ? replacer(filePath) : filePath;
+        if (config.isSpaceEscapingEnabled())
+            argPath = argPath.replace(/\ /g, '\\ ');
         return new Task(command + " " + argPath, config.isTaskOutPutVerbose());
     };
     return Task;

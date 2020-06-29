@@ -35,6 +35,7 @@ By default the tool wil look for a `taskConfig.json` in the current and parent f
     "command": "cat", // lefthand side of shell command that will be executed
     "taskVerbose": false, // If set to true, instead of a progress bar, the output of all commands will be executed
     "replacePattern": "/Users/exampleuser/projects/js/task-run/", // if set will try to replace this in the filepath to the replace value
-    "replaceValue": ""
+    "replaceValue": "",
+    "escapeSpace": true // if not set, will default to true
 }
 ```
