@@ -23,6 +23,14 @@ export class Config {
         return this.config.command;
     }
 
+    isAdvanced(): boolean {
+        return this.config.hasOwnProperty('advanced');
+    }
+
+    getAdvancedCommand(): string {
+        return this.config.advanced;
+    }
+
     getReplacePattern(): RegExp | null {
         const key = "replacePattern";
         const value = this.getValueWithType(key, 'string');

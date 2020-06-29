@@ -62,14 +62,14 @@ var GlobHelper_1 = require("./utilities/GlobHelper");
 var Dispatcher_1 = require("./Dispatcher");
 var logger = new Logger_1.Logger();
 var cli = program.program
-    .version("1.0.0")
+    .version("1.2.0")
     .usage("[options]")
     .option("-c, --config <path>", "Path to config file, will try taskConfig.json in both current and parent directory as default");
 cli.command("test <pattern>")
     .alias("t")
     .description("Do a dry run that lists the files that are captured by the glob pattern")
     .action(function (pattern) { return __awaiter(void 0, void 0, void 0, function () {
-    var config, files, tasks, example, ex_1;
+    var config, files, tasks, ex_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -83,12 +83,11 @@ cli.command("test <pattern>")
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, GlobHelper_1.GlobHelper.files(pattern, true)];
+                return [4 /*yield*/, GlobHelper_1.GlobHelper.files(pattern)];
             case 2:
                 files = _a.sent();
+                logger.debug("Found files:", files);
                 tasks = Dispatcher_1.Dispatcher.createTasks(config, files);
-                example = tasks.length > 0 ? tasks[0].toString() : '';
-                // logger.info(`Would create ${tasks.length} tasks in the form of\n\t`, example);
                 tasks.forEach(function (t) { return logger.info(t.toString()); });
                 return [3 /*break*/, 4];
             case 3:
@@ -139,5 +138,4 @@ cli.command("run <pattern> [parallel]")
 cli.parse(process.argv);
 if (process.argv.length < 3) {
     cli.help();
-    process.exit(0);
 }

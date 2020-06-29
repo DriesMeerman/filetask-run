@@ -33,9 +33,14 @@ By default the tool wil look for a `taskConfig.json` in the current and parent f
 ```js
 {
     "command": "cat", // lefthand side of shell command that will be executed
+    "advanced": "echo {full} \n echo {glob} \n echo {replaced}", 
+    // if advanced is passed command will be ignored, using the variables you can compose where the path will show up in the generated command
+    // full for the full path from the root
+    // glob for the result of the glob, so the path relative to where filetask was exectued
+    // replaced is the full path, passed through a replace function generated with the pattern and value described below 
     "taskVerbose": false, // If set to true, instead of a progress bar, the output of all commands will be executed
     "replacePattern": "/Users/exampleuser/projects/js/task-run/", // if set will try to replace this in the filepath to the replace value
     "replaceValue": "",
-    "escapeSpace": true // if not set, will default to true
+    "escapeSpace": true // if not set, will default to true, will escape all spaces ' ' to '\ ' in the commands that will be executed
 }
 ```

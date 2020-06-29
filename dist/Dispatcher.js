@@ -40,9 +40,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dispatcher = void 0;
-var Task_1 = require("./Task");
 var Logger_1 = require("./utilities/Logger");
 var cli_progress_1 = __importDefault(require("cli-progress"));
+var TaskFactory_1 = require("./utilities/TaskFactory");
 var logger = new Logger_1.Logger();
 var State;
 (function (State) {
@@ -199,7 +199,7 @@ var Dispatcher = /** @class */ (function () {
             this.onUpdate(last);
     };
     Dispatcher.createTasks = function (config, files) {
-        return files.map(function (file) { return Task_1.Task.buildTask(config, file); });
+        return files.map(function (file) { return TaskFactory_1.TaskFactory.buildTask(config, file); });
     };
     return Dispatcher;
 }());

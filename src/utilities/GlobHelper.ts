@@ -1,9 +1,8 @@
 // import * as glob from "glob";
 import glob from "glob";
 import path from "path";
-import { resolvePtr } from "dns";
 
-function pathResolver(file: string): string {
+export function pathResolver(file: string): string {
     return path.resolve(file).normalize()
 }
 

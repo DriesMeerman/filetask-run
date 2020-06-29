@@ -1,5 +1,6 @@
 {
     "command": "sleep 1 && cat",
+    "advanced": "echo {full} \n echo {glob} \n echo {replaced}",
     "taskVerbose": false,
     "replacePattern": "/Users/exampleuser/projects/js/task-run/",
     "replaceValue": ""

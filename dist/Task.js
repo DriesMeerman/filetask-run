@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Task = void 0;
+exports.Task = exports.TaskState = exports.TaskResult = void 0;
 var child_process_1 = require("child_process");
-// import path from "path";
 var TaskResult = /** @class */ (function () {
     function TaskResult(success, message, output) {
         this.success = success;
@@ -11,22 +10,26 @@ var TaskResult = /** @class */ (function () {
     }
     return TaskResult;
 }());
+exports.TaskResult = TaskResult;
 var TaskState;
 (function (TaskState) {
     TaskState[TaskState["stopped"] = 0] = "stopped";
     TaskState[TaskState["finished"] = 1] = "finished";
     TaskState[TaskState["started"] = 2] = "started";
-})(TaskState || (TaskState = {}));
+})(TaskState = exports.TaskState || (exports.TaskState = {}));
 var Task = /** @class */ (function () {
     function Task(command, verbose) {
         this.state = TaskState.stopped;
         this.command = command;
         this.verbose = verbose || false;
     }
+    Task.prototype.getCommand = function () {
+        return this.command;
+    };
     Task.prototype.start = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            child_process_1.exec(_this.command, function (error, stdout, stderr) {
+            child_process_1.exec(_this.getCommand(), function (error, stdout, stderr) {
                 if (error) {
                     _this.state = TaskState.finished;
                     _this.result = new TaskResult(false, error.message, stderr);
@@ -39,16 +42,7 @@ var Task = /** @class */ (function () {
         });
     };
     Task.prototype.toString = function () {
-        return this.command;
-    };
-    Task.buildTask = function (config, file) {
-        var filePath = file; //path.resolve(file).normalize();
-        var command = config.getCommand();
-        var replacer = config.getReplacer();
-        var argPath = replacer ? replacer(filePath) : filePath;
-        if (config.isSpaceEscapingEnabled())
-            argPath = argPath.replace(/\ /g, '\\ ');
-        return new Task(command + " " + argPath, config.isTaskOutPutVerbose());
+        return this.getCommand();
     };
     return Task;
 }());

@@ -33,6 +33,12 @@ var Config = /** @class */ (function () {
     Config.prototype.getCommand = function () {
         return this.config.command;
     };
+    Config.prototype.isAdvanced = function () {
+        return this.config.hasOwnProperty('advanced');
+    };
+    Config.prototype.getAdvancedCommand = function () {
+        return this.config.advanced;
+    };
     Config.prototype.getReplacePattern = function () {
         var key = "replacePattern";
         var value = this.getValueWithType(key, 'string');

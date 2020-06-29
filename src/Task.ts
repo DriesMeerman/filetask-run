@@ -1,9 +1,8 @@
 import { Config } from "./utilities/Config";
 import {exec} from "child_process";
+import path from "path";
 
-// import path from "path";
-
-class TaskResult{
+export class TaskResult{
     success: boolean;
     message: string;
     output: string;
@@ -15,7 +14,7 @@ class TaskResult{
     }
 }
 
-enum TaskState {
+export enum TaskState {
     stopped,
     finished,
     started
@@ -33,9 +32,13 @@ export class Task {
         this.verbose = verbose || false;
     }
 
+    getCommand(): string {
+        return this.command;
+    }
+
     start(): Promise<TaskResult>{
         return new Promise((resolve, reject) => {
-            exec(this.command, (error, stdout, stderr)=>{
+            exec(this.getCommand(), (error, stdout, stderr)=>{
                 if (error) {
                     this.state = TaskState.finished;
                     this.result = new TaskResult(false, error.message, stderr);
@@ -50,18 +53,6 @@ export class Task {
 
 
     toString(): string {
-        return this.command;
-    }
-
-    static buildTask(config: Config, file: string) {
-        const filePath = file;//path.resolve(file).normalize();
-        const command = config.getCommand();
-        const replacer = config.getReplacer();
-        let argPath = replacer ? replacer(filePath) : filePath;
-        
-        if (config.isSpaceEscapingEnabled())    
-            argPath = argPath.replace(/\ /g, '\\ ');
-
-        return new Task(`${command} ${argPath}`, config.isTaskOutPutVerbose());
+        return this.getCommand();
     }
 }

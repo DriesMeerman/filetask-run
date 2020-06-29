@@ -2,6 +2,7 @@ import { Task } from "./Task";
 import { Config } from "./utilities/Config";
 import { Logger } from "./utilities/Logger";
 import cliProgress from "cli-progress";
+import { TaskFactory } from "./utilities/TaskFactory";
 
 const logger = new Logger();
 
@@ -118,6 +119,6 @@ export class Dispatcher {
     }
 
     static createTasks(config: Config, files: string[]): Task[] {
-        return files.map(file => Task.buildTask(config, file));
+        return files.map(file => TaskFactory.buildTask(config, file));
     }
 }

@@ -1,11 +1,14 @@
 {
   "name": "filetask-run",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/DriesMeerman/filetask-run.git"
-},
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p ./",
     "start": "npm run build && node ./dist/index.js"
